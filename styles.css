@@ -1,129 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap');
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>החנות של חיה</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-body {
-  font-family: 'Heebo', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-  color: #333;
-  line-height: 1.6;
-  direction: rtl;
-}
+  <!-- 🔵 תפריט עליון -->
+  <header class="top-header">
+    <div class="header-content">
+      <div class="logo">
+        <img src="logo.png" alt="לוגו האתר">
+      </div>
 
-header {
-  background-color: #fff;
-  color: #444;
-  padding: 20px 0;
-  text-align: center;
-  font-size: 28px;
-  font-weight: 700;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
+      <div class="search-box">
+        <input type="text" placeholder="חיפוש...">
+        <button>🔍</button>
+      </div>
 
-nav {
-  background-color: #f7f7f7;
-  display: flex;
-  justify-content: center;
-  padding: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid #eee;
-}
+      <div class="user-area">
+        <a href="#" class="login">התחברות / הרשמה</a>
+        <a href="#" class="cart">
+          🛒 סל קניות
+          <span class="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
 
-nav a {
-  color: #444;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 6px 10px;
-  transition: 0.3s ease;
-  border-radius: 4px;
-}
+  <!-- 🔗 תפריט קישורים -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#">דף הבית</a></li>
+      <li><a href="#">גננת אם</a></li>
+      <li><a href="#">גננת משלימה</a></li>
+      <li><a href="#">סדרות תכנונים נוספות</a></li>
+      <li><a href="#">שונות</a></li>
+      <li><a href="#">שירים ומסיבות</a></li>
+      <li><a href="#">אודות</a></li>
+      <li><a href="#">בלוג</a></li>
+    </ul>
+  </nav>
 
-nav a:hover {
-  background-color: #e0f0ff;
-  color: #0074d9;
-}
+  <!-- 🧸 תוכן ראשי -->
+  <section class="section">
+    <h2 style="color:#003366; font-size:24px;">מוצרים מומלצים</h2>
+    <div class="products">
+      <div class="product">
+        <h3>ערכת פתיחה לגן</h3>
+        <p>פוסטרים, קלפים, שלטי פתיחה צבעוניים</p>
+        <button class="btn">לרכישה</button>
+      </div>
+      <div class="product">
+        <h3>ערכת עונות השנה</h3>
+        <p>לוח תוכן, קלפים, יצירות מותאמות לכל עונה</p>
+        <button class="btn">לרכישה</button>
+      </div>
+      <div class="product">
+        <h3>משחק אותיות</h3>
+        <p>משחק לימודי לפיתוח שפה וגרפומוטוריקה</p>
+        <button class="btn">לרכישה</button>
+      </div>
+    </div>
+  </section>
 
-.section {
-  padding: 50px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #fafafa;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.04);
-}
+  <!-- כפתור גלילה -->
+  <button class="scroll-top" title="לראש הדף">↑</button>
 
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-}
+  <!-- ⚫ פוטר -->
+  <footer>
+    © כל הזכויות שמורות לחיה | haya@example.com
+  </footer>
 
-.product {
-  background-color: #ffffff;
-  border: 1px solid #e2e2e2;
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
-  transition: 0.3s ease;
-  position: relative;
-}
-
-.product:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  transform: translateY(-6px);
-}
-
-.product h3 {
-  color: #222;
-  margin-bottom: 12px;
-  font-size: 22px;
-}
-
-.product p {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.btn {
-  background-color: #ec007e;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background-color: #ba0165;
-}
-
-footer {
-  background-color: #3b4754;
-  color: white;
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 15px;
-  margin-top: 80px;
-  box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-footer div {
-  margin: 10px 20px;
-}
-
-footer h4 {
-  margin-bottom: 10px;
-  font-weight: 500;
-  font-size: 16px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 6px;
-}
+  <script src="script.js"></script>
+</body>
+</html>
