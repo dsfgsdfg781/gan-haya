@@ -1,13 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
 
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Assistant', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f6f9;
-  color: #333;
+  color: #222;
   line-height: 1.6;
   direction: rtl;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -18,30 +25,36 @@ header {
   font-size: 28px;
   font-weight: 700;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.6s ease;
 }
 
 nav {
   background-color: #0055a5;
   display: flex;
   justify-content: center;
-  padding: 10px;
+  padding: 12px 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  animation: fadeIn 1s ease;
 }
 
 nav a {
   color: white;
   text-decoration: none;
   margin: 0 20px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
-  padding: 8px 12px;
-  transition: background-color 0.3s, color 0.3s;
+  padding: 10px 16px;
+  transition: all 0.3s ease;
   border-radius: 6px;
 }
 
 nav a:hover {
   background-color: #0074d9;
   color: #e6f2ff;
+  transform: scale(1.05);
 }
 
 .section {
@@ -49,8 +62,10 @@ nav a:hover {
   max-width: 1200px;
   margin: 0 auto;
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  animation: fadeInUp 0.8s ease;
+  flex-grow: 1;
 }
 
 .products {
@@ -62,21 +77,22 @@ nav a:hover {
 .product {
   background-color: #f9fbfe;
   border: 1px solid #dbe2ea;
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 10px;
+  padding: 24px;
   text-align: center;
-  transition: box-shadow 0.3s, transform 0.2s;
+  transition: all 0.4s ease;
+  animation: fadeInUp 0.7s ease;
 }
 
 .product:hover {
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
 }
 
 .product h3 {
   color: #003366;
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin-bottom: 12px;
+  font-size: 22px;
 }
 
 .product p {
@@ -87,17 +103,19 @@ nav a:hover {
 .btn {
   background-color: #0074d9;
   color: white;
-  padding: 10px 18px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 6px;
+  border-radius: 30px;
   font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  margin-top: 12px;
-  transition: background-color 0.3s;
+  margin-top: 14px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .btn:hover {
   background-color: #005fa3;
+  transform: scale(1.05);
 }
 
 footer {
@@ -106,6 +124,22 @@ footer {
   text-align: center;
   padding: 16px;
   font-size: 14px;
-  margin-top: 40px;
+  margin-top: auto;
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* 🔄 אנימציות */
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
