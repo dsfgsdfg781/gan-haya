@@ -67,3 +67,23 @@ function showPopup(text) {
     }, 2500);
   }, 100);
 }
+const cartBtn = document.getElementById('cart-button');
+const cartSidebar = document.getElementById('cartSidebar');
+const closeCartBtn = document.getElementById('closeCart');
+
+cartBtn.addEventListener('click', () => {
+  cartSidebar.classList.add('open');
+});
+
+closeCartBtn.addEventListener('click', () => {
+  cartSidebar.classList.remove('open');
+});
+
+// אפשר גם לסגור בלחיצה מחוץ לסל
+document.addEventListener('click', (e) => {
+  if (cartSidebar.classList.contains('open') &&
+      !cartSidebar.contains(e.target) &&
+      !cartBtn.contains(e.target)) {
+    cartSidebar.classList.remove('open');
+  }
+});
