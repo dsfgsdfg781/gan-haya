@@ -234,3 +234,36 @@ footer {
   left: -10px;
 }
 
+.main-nav {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.main-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.main-nav li {
+  margin: 0;
+}
+
+.main-nav a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.main-nav a:hover {
+  background-color: #f50057;
+  color: white;
+  border-radius: 5px;
+}
+
