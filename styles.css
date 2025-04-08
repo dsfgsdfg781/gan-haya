@@ -10,7 +10,7 @@ body {
   padding: 0;
   background-color: #f4f6f9;
   color: #222;
-  line-height: 1.4;
+  line-height: 0.6;
   direction: rtl;
   display: flex;
   flex-direction: column;
@@ -34,6 +34,7 @@ body {
 
 .logo img {
   height: 80px;
+  max-width: none;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -82,7 +83,6 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: transform 0.3s ease;
 }
 
 .cart-count {
@@ -107,6 +107,10 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.main-nav li {
+  margin: 0;
 }
 
 .main-nav a {
@@ -145,7 +149,7 @@ body {
   background-color: #f9fbfe;
   border: 1px solid #dbe2ea;
   border-radius: 10px;
-  padding: 16px;
+  padding: 12px;
   text-align: center;
   transition: all 0.4s ease;
   line-height: 1.2;
@@ -156,12 +160,24 @@ body {
   transform: translateY(-6px);
 }
 
+.product h3 {
+  color: #003366;
+  margin-bottom: 6px;
+  font-size: 22px;
+}
+
+.product p {
+  color: #555;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
 .product-img {
   width: 100%;
-  max-width: 200px;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
-  margin-bottom: 12px;
+  display: block;
+  margin-bottom: 8px;
   border-radius: 8px;
 }
 
@@ -174,162 +190,11 @@ body {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 8px;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .btn:hover {
   background-color: #005fa3;
   transform: scale(1.05);
-}
-
-/* סל קניות שמאל */
-.cart-sidebar {
-  left: -400px;
-  right: auto;
-  width: 320px;
-  position: fixed;
-  top: 0;
-  height: 100%;
-  background: white;
-  box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  transition: left 0.3s ease;
-}
-
-.cart-sidebar.open {
-  left: 0;
-}
-
-.cart-sidebar.flash {
-  box-shadow: 4px 0 20px rgba(245, 0, 87, 0.4);
-}
-
-.cart-header {
-  background-color: #f50057;
-  color: white;
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cart-items {
-  flex: 1;
-  padding: 16px;
-  overflow-y: auto;
-}
-
-.cart-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-}
-
-.cart-thumb {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-}
-
-.qty-controls {
-  display: flex;
-  gap: 4px;
-}
-
-.qty-controls button {
-  background-color: #eee;
-  border: none;
-  padding: 4px 8px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.cart-footer {
-  padding: 16px;
-  border-top: 1px solid #eee;
-  background: #f9f9f9;
-}
-
-.checkout-btn {
-  background-color: #f50057;
-  color: white;
-  border: none;
-  width: 100%;
-  padding: 10px;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-#closeCart {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-}
-
-footer {
-  background-color: #003366;
-  color: white;
-  text-align: center;
-  padding: 16px;
-  font-size: 14px;
-  margin-top: auto;
-}
-
-.scroll-top {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  background-color: #003366;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 50%;
-  font-size: 18px;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 999;
-}
-
-.scroll-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* ✅ אנימציה לקפיצה */
-@keyframes bump {
-  0% { transform: scale(1); }
-  10% { transform: scale(1.1); }
-  30% { transform: scale(0.95); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-.bump {
-  animation: bump 0.4s ease;
-}
-
-/* ✅ אנימציית pop לכפתור בסל */
-@keyframes pop {
-  0% { transform: scale(1); box-shadow: none; }
-  50% { transform: scale(1.15); box-shadow: 0 0 10px rgba(0, 116, 217, 0.4); }
-  100% { transform: scale(1); box-shadow: none; }
-}
-
-.pop {
-  animation: pop 0.4s ease;
 }
