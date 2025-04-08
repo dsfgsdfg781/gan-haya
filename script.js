@@ -1,4 +1,4 @@
-// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל עם אפשרות מחיקה
+// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל עם אפשרות מחיקה + תיקון סגירה לא רצויה של הסל + עדכון כפתור מוצר
 const cartCount = document.querySelector('.cart-count');
 const cartSidebar = document.getElementById('cartSidebar');
 const closeCartBtn = document.getElementById('closeCart');
@@ -9,11 +9,13 @@ const cartTotal = document.getElementById('cartTotal');
 let cart = {}; // מבנה: { id: { name, price, image, quantity } }
 
 // פתיחת וסגירת הסל
-cartBtn.addEventListener('click', () => {
+cartBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
   cartSidebar.classList.add('open');
 });
 
-closeCartBtn.addEventListener('click', () => {
+closeCartBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
   cartSidebar.classList.remove('open');
 });
 
@@ -60,6 +62,7 @@ function updateCartUI() {
   cartItemsContainer.innerHTML = html || '<p>הסל ריק.</p>';
   cartTotal.textContent = total;
   cartCount.textContent = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+  updateProductButtons();
 }
 
 // שינוי כמות
@@ -76,6 +79,20 @@ function removeItem(id) {
   updateCartUI();
 }
 
+// עדכון כפתור מוצר לפי מצב סל
+function updateProductButtons() {
+  document.querySelectorAll('.add-to-cart').forEach(btn => {
+    const id = btn.dataset.id;
+    if (cart[id]) {
+      btn.disabled = true;
+      btn.textContent = 'בסל ✓';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'הוספה לסל';
+    }
+  });
+}
+
 // חיבור כפתורים אחרי טעינת DOM
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.add-to-cart').forEach(btn => {
@@ -86,8 +103,6 @@ window.addEventListener('DOMContentLoaded', () => {
       const price = parseInt(btn.dataset.price);
       const image = btn.dataset.image;
       addToCart(id, name, price, image);
-      btn.disabled = true;
-      btn.textContent = 'בסל ✓';
     });
   });
 });
