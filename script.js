@@ -1,4 +1,4 @@
-// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל
+// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל עם אפשרות מחיקה
 const cartCount = document.querySelector('.cart-count');
 const cartSidebar = document.getElementById('cartSidebar');
 const closeCartBtn = document.getElementById('closeCart');
@@ -45,7 +45,7 @@ function updateCartUI() {
     html += `
       <div class="cart-item">
         <img src="${item.image}" alt="${item.name}" class="cart-thumb">
-        <div>
+        <div style="flex-grow:1">
           <strong>${item.name}</strong><br>
           <span>${item.price} ₪ × ${item.quantity}</span>
         </div>
@@ -53,6 +53,7 @@ function updateCartUI() {
           <button onclick="changeQty('${id}', -1)">−</button>
           <button onclick="changeQty('${id}', 1)">+</button>
         </div>
+        <button onclick="removeItem('${id}')" style="background:red;color:white;border:none;border-radius:4px;padding:4px 8px;margin-right:8px">🗑</button>
       </div>
     `;
   }
@@ -69,10 +70,17 @@ function changeQty(id, delta) {
   updateCartUI();
 }
 
+// מחיקת פריט מהסל
+function removeItem(id) {
+  delete cart[id];
+  updateCartUI();
+}
+
 // חיבור כפתורים אחרי טעינת DOM
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.add-to-cart').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const id = btn.dataset.id;
       const name = btn.dataset.name;
       const price = parseInt(btn.dataset.price);
