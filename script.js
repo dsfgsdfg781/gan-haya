@@ -1,4 +1,4 @@
-// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל עם אפשרות מחיקה + תיקון סגירה לא רצויה של הסל + עדכון כפתור מוצר
+// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל עם אפשרות מחיקה - הסל עובר לשמאל
 const cartCount = document.querySelector('.cart-count');
 const cartSidebar = document.getElementById('cartSidebar');
 const closeCartBtn = document.getElementById('closeCart');
@@ -19,10 +19,10 @@ closeCartBtn.addEventListener('click', (e) => {
   cartSidebar.classList.remove('open');
 });
 
-document.addEventListener('click', (e) => {
-  if (cartSidebar.classList.contains('open') &&
-      !cartSidebar.contains(e.target) &&
-      !cartBtn.contains(e.target)) {
+// הסרת הסגירה האוטומטית בעת לחיצה בתוך הסל
+window.addEventListener('click', (e) => {
+  const isClickInside = cartSidebar.contains(e.target) || cartBtn.contains(e.target);
+  if (!isClickInside) {
     cartSidebar.classList.remove('open');
   }
 });
@@ -55,14 +55,22 @@ function updateCartUI() {
           <button onclick="changeQty('${id}', -1)">−</button>
           <button onclick="changeQty('${id}', 1)">+</button>
         </div>
-        <button onclick="removeItem('${id}')" style="background:red;color:white;border:none;border-radius:4px;padding:4px 8px;margin-right:8px">🗑</button>
+        <button onclick="removeItem('${id}')" style="background:red;color:white;border:none;border-radius:4px;padding:4px 8px;margin-left:8px">🗑</button>
       </div>
     `;
   }
   cartItemsContainer.innerHTML = html || '<p>הסל ריק.</p>';
   cartTotal.textContent = total;
   cartCount.textContent = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
-  updateProductButtons();
+
+  // הפעלה מחדש של כפתורים למוצרים שהוסרו
+  document.querySelectorAll('.add-to-cart').forEach(btn => {
+    const id = btn.dataset.id;
+    if (!cart[id]) {
+      btn.disabled = false;
+      btn.textContent = 'הוספה לסל';
+    }
+  });
 }
 
 // שינוי כמות
@@ -79,20 +87,6 @@ function removeItem(id) {
   updateCartUI();
 }
 
-// עדכון כפתור מוצר לפי מצב סל
-function updateProductButtons() {
-  document.querySelectorAll('.add-to-cart').forEach(btn => {
-    const id = btn.dataset.id;
-    if (cart[id]) {
-      btn.disabled = true;
-      btn.textContent = 'בסל ✓';
-    } else {
-      btn.disabled = false;
-      btn.textContent = 'הוספה לסל';
-    }
-  });
-}
-
 // חיבור כפתורים אחרי טעינת DOM
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.add-to-cart').forEach(btn => {
@@ -103,6 +97,8 @@ window.addEventListener('DOMContentLoaded', () => {
       const price = parseInt(btn.dataset.price);
       const image = btn.dataset.image;
       addToCart(id, name, price, image);
+      btn.disabled = true;
+      btn.textContent = 'בסל ✓';
     });
   });
 });
