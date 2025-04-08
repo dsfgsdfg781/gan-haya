@@ -21,10 +21,9 @@
       </div>
 
      <button id="cart-button" class="cart">
-  🛒 סל קניות
-  <span class="cart-count">0</span>
-</button>
-      </div>
+        🛒 סל קניות
+        <span class="cart-count">0</span>
+      </button>
     </div>
   </header>
 
@@ -46,21 +45,41 @@
   <section class="section">
     <h2 style="color:#003366; font-size:24px;">מוצרים מומלצים</h2>
     <div class="products">
-      <div class="product">
-        <h3>ערכת פתיחה לגן</h3>
-        <p>פוסטרים, קלפים, שלטי פתיחה צבעוניים</p>
-        <button class="btn">לרכישה</button>
-      </div>
-      <div class="product">
-        <h3>ערכת עונות השנה</h3>
-        <p>לוח תוכן, קלפים, יצירות מותאמות לכל עונה</p>
-        <button class="btn">לרכישה</button>
-      </div>
-      <div class="product">
-        <h3>משחק אותיות</h3>
-        <p>משחק לימודי לפיתוח שפה וגרפומוטוריקה</p>
-        <button class="btn">לרכישה</button>
-      </div>
+      <!-- נכניס את כל 30 המוצרים -->
+      <!-- כל מוצר מקושר לעמוד מוצר פיקטיבי -->
+      <!-- נוסיף ידנית לדוגמה 30 מוצרים -->
+      <!-- כדי לקצר, אשתמש בלולאת JS בהמשך להפקה אוטומטית -->
+      <script>
+        const productList = [
+          "ערכת פתיחה לגן", "משחק אותיות", "ערכת עונות השנה", "קלפי רגשות",
+          "ספר יצירה עונתי", "לוח ניהול יומי", "משחק צורות וצבעים", "חוברת מדבקות לימודית",
+          "ערכת יצירה שבועית", "ספרון חגי ישראל", "משחק זיכרון לפסח", "פאזל גן חיות",
+          "ערכת ניקוד בסיסית", "משחק בינגו אותיות", "ערכת מיומנויות חברתיות", "פוסטר כללים לגן",
+          "ערכת מספרים צבעונית", "משחק התאמות מילים", "תיקייה לפעילויות חורף", "ערכת קיץ לגן",
+          "ספרון סיפור חורף", "קוביות התנהגות טובות", "קלפי מוטיבציה", "משחק הכנה לכתיבה",
+          "ערכת ברכות לראש השנה", "קופסה ללמידה תחושתית", "משחק רצף אירועים", "משחק סידור סדר יום",
+          "ספר יצירה לקיץ", "ערכת יצירה לחנוכה"
+        ];
+
+        const container = document.querySelector('.products');
+
+        productList.forEach((name, i) => {
+          const price = Math.floor(Math.random() * 60) + 40;
+          const html = `
+            <div class="product" id="product${i + 1}">
+              <a href="product${i + 1}.html">
+                <img src="product${i + 1}.jpg" alt="${name}" class="product-img">
+              </a>
+              <h3>${name}</h3>
+              <p>${price} ₪</p>
+              <div class="product-actions">
+                <button class="btn add-to-cart" data-id="${i + 1}" data-name="${name}" data-price="${price}" data-image="product${i + 1}.jpg">הוספה לסל</button>
+              </div>
+            </div>
+          `;
+          container.insertAdjacentHTML('beforeend', html);
+        });
+      </script>
     </div>
   </section>
 
@@ -70,20 +89,19 @@
   <!-- ⚫ פוטר -->
   <footer>
     <!-- סל קניות נפתח -->
-<aside class="cart-sidebar" id="cartSidebar">
-  <div class="cart-header">
-    <h3>🛒 סל הקניות שלך</h3>
-    <button id="closeCart">✖</button>
-  </div>
-  <div class="cart-items" id="cartItems">
-    <p>הסל ריק.</p>
-  </div>
-  <div class="cart-footer">
-    <p>סה״כ: <span id="cartTotal">0 ₪</span></p>
-    <button class="checkout-btn">לתשלום</button>
-  </div>
-</aside>
-
+    <aside class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h3>🛒 סל הקניות שלך</h3>
+        <button id="closeCart">✖</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <p>הסל ריק.</p>
+      </div>
+      <div class="cart-footer">
+        <p>סה״כ: <span id="cartTotal">0 ₪</span></p>
+        <button class="checkout-btn">לתשלום</button>
+      </div>
+    </aside>
     © כל הזכויות שמורות לחיה | haya@example.com
   </footer>
 
