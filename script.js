@@ -11,7 +11,7 @@ let cart = {}; // מבנה: { id: { name, price, image, quantity } }
 // פתיחת וסגירת הסל
 cartBtn.addEventListener('click', (e) => {
   e.stopPropagation();
-  cartSidebar.classList.add('open');
+  cartSidebar.classList.add('open', 'animated');
 });
 
 closeCartBtn.addEventListener('click', (e) => {
@@ -41,6 +41,15 @@ function addToCart(id, name, price, image) {
   }
   updateCartUI();
   animateCartIcon();
+  flashCartSidebar();
+}
+
+// הבהוב הסל כשמוסיפים פריט
+function flashCartSidebar() {
+  cartSidebar.classList.add('flash');
+  setTimeout(() => {
+    cartSidebar.classList.remove('flash');
+  }, 500);
 }
 
 // עדכון תצוגת הסל
