@@ -10,7 +10,7 @@ body {
   padding: 0;
   background-color: #f4f6f9;
   color: #222;
-  line-height: 0.6;
+  line-height: 1.4;
   direction: rtl;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,6 @@ body {
 
 .logo img {
   height: 80px;
-  max-width: none;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -83,6 +82,7 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
+  transition: transform 0.3s ease;
 }
 
 .cart-count {
@@ -107,10 +107,6 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-}
-
-.main-nav li {
-  margin: 0;
 }
 
 .main-nav a {
@@ -152,7 +148,7 @@ body {
   padding: 16px;
   text-align: center;
   transition: all 0.4s ease;
-  line-height: 0.2;
+  line-height: 1.2;
 }
 
 .product:hover {
@@ -160,25 +156,12 @@ body {
   transform: translateY(-6px);
 }
 
-.product h3 {
-  color: #003366;
-  margin-bottom: 8px;
-  font-size: 22px;
-}
-
-.product p {
-  color: #555;
-  font-size: 15px;
-  margin-bottom: 8px;
-}
-
 .product-img {
   width: 100%;
   max-width: 200px;
   height: 200px;
   object-fit: cover;
-  display: block;
-  margin: 0 auto 8px;
+  margin-bottom: 12px;
   border-radius: 8px;
 }
 
@@ -191,7 +174,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 10px;
   transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -200,22 +183,28 @@ body {
   transform: scale(1.05);
 }
 
+/* סל קניות שמאל */
 .cart-sidebar {
+  left: -400px;
+  right: auto;
+  width: 320px;
   position: fixed;
   top: 0;
-  right: -400px;
-  width: 320px;
   height: 100%;
-  background-color: #fff;
-  box-shadow: -4px 0 10px rgba(0,0,0,0.1);
+  background: white;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.1);
   z-index: 2000;
   display: flex;
   flex-direction: column;
-  transition: right 0.3s ease;
+  transition: left 0.3s ease;
 }
 
 .cart-sidebar.open {
-  right: 0;
+  left: 0;
+}
+
+.cart-sidebar.flash {
+  box-shadow: 4px 0 20px rgba(245, 0, 87, 0.4);
 }
 
 .cart-header {
@@ -236,22 +225,23 @@ body {
 .cart-item {
   display: flex;
   align-items: center;
+  gap: 10px;
   margin-bottom: 16px;
-  gap: 12px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
 }
 
 .cart-thumb {
   width: 60px;
   height: 60px;
-  border-radius: 6px;
   object-fit: cover;
+  border-radius: 6px;
   border: 1px solid #ddd;
 }
 
 .qty-controls {
   display: flex;
   gap: 4px;
-  margin-right: auto;
 }
 
 .qty-controls button {
@@ -259,8 +249,8 @@ body {
   border: none;
   padding: 4px 8px;
   font-size: 16px;
-  cursor: pointer;
   border-radius: 4px;
+  cursor: pointer;
   font-weight: bold;
 }
 
@@ -296,7 +286,6 @@ footer {
   padding: 16px;
   font-size: 14px;
   margin-top: auto;
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .scroll-top {
@@ -320,65 +309,8 @@ footer {
   opacity: 1;
   visibility: visible;
 }
-.cart-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-}
 
-.cart-thumb {
-  width: 50px;
-  height: 50px;
-  border-radius: 6px;
-  object-fit: cover;
-  margin-left: 8px;
-}
-
-.cart-item div {
-  flex-grow: 1;
-  text-align: right;
-  font-size: 14px;
-  color: #222;
-}
-
-.cart-item strong {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.cart-item span {
-  font-size: 13px;
-  color: #555;
-}
-
-.qty-controls {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.qty-controls button {
-  background-color: #eee;
-  border: none;
-  padding: 4px 8px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.cart-item button[onclick^="removeItem"] {
-  background: red;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 8px;
-  cursor: pointer;
-}
-/* 🟣 אנימציה לקפיצה של אייקון הסל */
+/* ✅ אנימציה לקפיצה */
 @keyframes bump {
   0% { transform: scale(1); }
   10% { transform: scale(1.1); }
@@ -391,52 +323,13 @@ footer {
   animation: bump 0.4s ease;
 }
 
-/* 🟣 אנימציה לכפתור שהפך ל"בסל ✓" *//* 🔄 מעבר סל שמאל + אנימציה */
-.cart-sidebar {
-  left: -400px;
-  right: auto;
-  transition: left 0.3s ease;
-}
-
-.cart-sidebar.open {
-  left: 0;
-}
-
-/* ⚡ אפקט Flash */
-.cart-sidebar.flash {
-  box-shadow: -4px 0 20px rgba(245, 0, 87, 0.4);
-  transition: box-shadow 0.3s ease;
-}
-
-/* ✅ אנימציה לכפתור "בסל ✓" */
+/* ✅ אנימציית pop לכפתור בסל */
 @keyframes pop {
-  0% {
-    transform: scale(1);
-    box-shadow: none;
-  }
-  50% {
-    transform: scale(1.15);
-    box-shadow: 0 0 10px rgba(0, 116, 217, 0.4);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: none;
-  }
+  0% { transform: scale(1); box-shadow: none; }
+  50% { transform: scale(1.15); box-shadow: 0 0 10px rgba(0, 116, 217, 0.4); }
+  100% { transform: scale(1); box-shadow: none; }
 }
 
 .pop {
   animation: pop 0.4s ease;
-}
-
-/* 🔵 קפיצת אייקון סל */
-@keyframes bump {
-  0% { transform: scale(1); }
-  10% { transform: scale(1.1); }
-  30% { transform: scale(0.95); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-.bump {
-  animation: bump 0.4s ease;
 }
