@@ -1,4 +1,4 @@
-// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל עם אפשרות מחיקה
+// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל עם אפשרות מחיקה ואנימציות
 const cartCount = document.querySelector('.cart-count');
 const cartSidebar = document.getElementById('cartSidebar');
 const closeCartBtn = document.getElementById('closeCart');
@@ -40,6 +40,7 @@ function addToCart(id, name, price, image) {
     cart[id] = { name, price, image, quantity: 1 };
   }
   updateCartUI();
+  animateCartIcon();
 }
 
 // עדכון תצוגת הסל
@@ -52,7 +53,7 @@ function updateCartUI() {
     html += `
       <div class="cart-item">
         <img src="${item.image}" alt="${item.name}" class="cart-thumb">
-        <div style="flex-grow:1">
+        <div style="flex-grow:1; color: #222; font-size: 14px;">
           <strong>${item.name}</strong><br>
           <span>${item.price} ₪ × ${item.quantity}</span>
         </div>
@@ -74,6 +75,7 @@ function updateCartUI() {
     if (!cart[id]) {
       btn.disabled = false;
       btn.textContent = 'הוספה לסל';
+      btn.classList.remove('in-cart');
     }
   });
 }
@@ -92,6 +94,12 @@ function removeItem(id) {
   updateCartUI();
 }
 
+// אנימציית קפיצה לסל
+function animateCartIcon() {
+  cartBtn.classList.add('bump');
+  setTimeout(() => cartBtn.classList.remove('bump'), 300);
+}
+
 // חיבור כפתורים אחרי טעינת DOM
 window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.add-to-cart').forEach(btn => {
@@ -104,6 +112,8 @@ window.addEventListener('DOMContentLoaded', () => {
       addToCart(id, name, price, image);
       btn.disabled = true;
       btn.textContent = 'בסל ✓';
+      btn.classList.add('pop');
+      setTimeout(() => btn.classList.remove('pop'), 400);
     });
   });
 });
