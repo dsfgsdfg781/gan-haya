@@ -152,7 +152,7 @@ body {
   padding: 16px;
   text-align: center;
   transition: all 0.4s ease;
-  line-height: 1.2;
+  line-height: 0.2;
 }
 
 .product:hover {
