@@ -320,3 +320,61 @@ footer {
   opacity: 1;
   visibility: visible;
 }
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-left: 8px;
+}
+
+.cart-item div {
+  flex-grow: 1;
+  text-align: right;
+  font-size: 14px;
+  color: #222;
+}
+
+.cart-item strong {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.cart-item span {
+  font-size: 13px;
+  color: #555;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.qty-controls button {
+  background-color: #eee;
+  border: none;
+  padding: 4px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-item button[onclick^="removeItem"] {
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
