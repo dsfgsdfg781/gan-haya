@@ -170,6 +170,15 @@ body {
   font-size: 15px;
 }
 
+.product-img {
+  width: 100%;
+  max-width: 180px;
+  max-height: 180px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 12px;
+}
+
 .btn {
   background-color: #0074d9;
   color: white;
