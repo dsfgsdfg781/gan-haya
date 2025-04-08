@@ -149,9 +149,10 @@ body {
   background-color: #f9fbfe;
   border: 1px solid #dbe2ea;
   border-radius: 10px;
-  padding: 24px;
+  padding: 16px;
   text-align: center;
   transition: all 0.4s ease;
+  line-height: 1.2;
 }
 
 .product:hover {
@@ -161,22 +162,24 @@ body {
 
 .product h3 {
   color: #003366;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-size: 22px;
 }
 
 .product p {
   color: #555;
   font-size: 15px;
+  margin-bottom: 8px;
 }
 
 .product-img {
   width: 100%;
-  max-width: 180px;
-  max-height: 180px;
+  max-width: 200px;
+  height: 200px;
   object-fit: cover;
   display: block;
-  margin: 0 auto 12px;
+  margin: 0 auto 8px;
+  border-radius: 8px;
 }
 
 .btn {
@@ -188,7 +191,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 14px;
+  margin-top: 8px;
   transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -197,7 +200,6 @@ body {
   transform: scale(1.05);
 }
 
-/* סל קניות נפתח */
 .cart-sidebar {
   position: fixed;
   top: 0;
