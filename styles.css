@@ -10,7 +10,7 @@ body {
   padding: 0;
   background-color: #f4f6f9;
   color: #222;
-  line-height: 1.6;
+  line-height: 0.6;
   direction: rtl;
   display: flex;
   flex-direction: column;
