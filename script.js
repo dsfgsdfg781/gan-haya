@@ -1,4 +1,4 @@
-// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל עם אפשרות מחיקה - הסל עובר לשמאל
+// סל הקניות עם מעקב כמויות ותצוגת פריטים בסל עם אפשרות מחיקה
 const cartCount = document.querySelector('.cart-count');
 const cartSidebar = document.getElementById('cartSidebar');
 const closeCartBtn = document.getElementById('closeCart');
@@ -19,7 +19,12 @@ closeCartBtn.addEventListener('click', (e) => {
   cartSidebar.classList.remove('open');
 });
 
-// הסרת הסגירה האוטומטית בעת לחיצה בתוך הסל
+// מניעת סגירת הסל בלחיצה בתוך הסל
+cartSidebar.addEventListener('click', (e) => {
+  e.stopPropagation();
+});
+
+// סגירה רק בלחיצה מחוץ לסל ולכפתור
 window.addEventListener('click', (e) => {
   const isClickInside = cartSidebar.contains(e.target) || cartBtn.contains(e.target);
   if (!isClickInside) {
@@ -55,7 +60,7 @@ function updateCartUI() {
           <button onclick="changeQty('${id}', -1)">−</button>
           <button onclick="changeQty('${id}', 1)">+</button>
         </div>
-        <button onclick="removeItem('${id}')" style="background:red;color:white;border:none;border-radius:4px;padding:4px 8px;margin-left:8px">🗑</button>
+        <button onclick="removeItem('${id}')" style="background:red;color:white;border:none;border-radius:4px;padding:4px 8px;margin-right:8px">🗑</button>
       </div>
     `;
   }
