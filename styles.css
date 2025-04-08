@@ -140,7 +140,7 @@ body {
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   padding: 0;
 }
@@ -220,6 +220,37 @@ body {
   flex: 1;
   padding: 16px;
   overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.cart-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.qty-controls {
+  display: flex;
+  gap: 4px;
+  margin-right: auto;
+}
+
+.qty-controls button {
+  background-color: #eee;
+  border: none;
+  padding: 4px 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
 }
 
 .cart-footer {
